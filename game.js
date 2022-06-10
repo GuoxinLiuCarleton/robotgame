@@ -100,7 +100,11 @@ var startGame = function() {
 
       var pickedEnemyName = enemyNames[i];
 
-      enemyHealth = 50;
+      enemyHealth = randomNumber(40, 60);
+      // generate random damage value based on player's attack power
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+
+        enemyHealth = Math.max(0, enemyHealth - damage);
 
       fight(pickedEnemyName);
       if (playerHealth > 0 && i < enemyNames.length - 1) { 
@@ -167,4 +171,10 @@ switch (shopOptionPrompt) {
           }
 };
 
+// function to generate a random numeric value
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
+};
 startGame();
